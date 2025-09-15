@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八角玩家類型傾向測驗</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5dc;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .question-card {
+            background-color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .question-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            transition: all 0.2s ease-in-out;
+        }
+        .option-label:hover {
+            background-color: #e5e7eb;
+        }
+        input[type="radio"] {
+            margin-right: 0.75rem;
+            accent-color: #1c64f2;
+        }
+        .result-section {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: #eff6ff;
+            border-radius: 1rem;
+            border: 2px solid #3b82f6;
+        }
+        .result-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .result-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .result-content p {
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: #1c64f2;
+            border-radius: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 2rem;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+        .result-image {
+            width: 100%;
+            max-width: 256px;
+            margin: 0 auto 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">八角玩家類型傾向測驗</h1>
+        <p class="text-center text-gray-600 mb-8">回答以下問題，找出你的玩家屬性，並獲得專屬的建議！</p>
+
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question-card" id="q1">
+                <p class="question-text">1. 在一個新遊戲或應用程式中，你最先會做什麼？</p>
+                <label class="option-label"><input type="radio" name="q1" value="成就者" required>a) 找尋可以完成的任務、獲得的獎勵，並設定提升等級的目標。</label>
+                <label class="option-label"><input type="radio" name="q1" value="探索者" required>b) 隨意點擊每個按鈕、探索每個角落，看有沒有隱藏的驚喜或彩蛋。</label>
+                <label class="option-label"><input type="radio" name="q1" value="慈善家" required>c) 尋找是否有教學或新手村任務，並主動幫助其他新人。</label>
+                <label class="option-label"><input type="radio" name="q1" value="社交者" required>d) 嘗試加入公會或尋找其他玩家，看看大家都在哪裡。</label>
+                <label class="option-label"><input type="radio" name="q1" value="殺手" required>e) 尋找排行榜功能，看自己是否有機會超越別人。</label>
+                <label class="option-label"><input type="radio" name="q1" value="自由精神" required>f) 看看有沒有可以自由編輯或創造內容的功能，例如設計角色或建造房屋。</label>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-card" id="q2">
+                <p class="question-text">2. 遊戲中讓你感到最有成就感的時刻是什麼？</p>
+                <label class="option-label"><input type="radio" name="q2" value="探索者" required>a) 發現遊戲設計者隱藏的一個複雜機制或秘密劇情。</label>
+                <label class="option-label"><input type="radio" name="q2" value="成就者" required>b) 完成一個困難的成就，並獲得稀有徽章或頭銜。</label>
+                <label class="option-label"><input type="radio" name="q2" value="慈善家" required>c) 看到自己的幫助讓一個新手玩家快速成長起來。</label>
+                <label class="option-label"><input type="radio" name="q2" value="社交者" required>d) 與團隊成員共同合作，成功擊敗一個需要多人協力的強大敵人。</label>
+                <label class="option-label"><input type="radio" name="q2" value="殺手" required>e) 在單挑模式中，用自己的技巧擊敗一個強大的對手。</label>
+                <label class="option-label"><input type="radio" name="q2" value="自由精神" required>f) 完成一個完全由自己設計的獨特作品或場景。</label>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-card" id="q3">
+                <p class="question-text">3. 如果遊戲提供「社群功能」，你最想在其中扮演什麼角色？</p>
+                <label class="option-label"><input type="radio" name="q3" value="成就者" required>a) 成為社群中最有聲望、獲得最多獎勵的「榮譽玩家」。</label>
+                <label class="option-label"><input type="radio" name="q3" value="探索者" required>b) 成為社群中資訊最豐富的「百科全書」，隨時解答大家的疑問。</label>
+                <label class="option-label"><input type="radio" name="q3" value="慈善家" required>c) 成為社群中樂於助人的「志工」，無私地分享資源或經驗。</label>
+                <label class="option-label"><input type="radio" name="q3" value="社交者" required>d) 成為社群中人緣最好的「社交中心」，組織各種活動或聊天。</label>
+                <label class="option-label"><input type="radio" name="q3" value="殺手" required>e) 成為社群中最強的「戰鬥領袖」，帶領團隊征服困難副本。</label>
+                <label class="option-label"><input type="radio" name="q3" value="自由精神" required>f) 成為社群中獨特的「藝術家」，分享自己的創作。</label>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-card" id="q4">
+                <p class="question-text">4. 哪一種獎勵對你最具吸引力？</p>
+                <label class="option-label"><input type="radio" name="q4" value="成就者" required>a) 提升等級或能力的點數，以及能展示你成就的排行榜位置。</label>
+                <label class="option-label"><input type="radio" name="q4" value="探索者" required>b) 關於遊戲背景故事的珍貴資料，或是能開啟新區域的鑰匙。</label>
+                <label class="option-label"><input type="radio" name="q4" value="社交者" required>c) 能与朋友分享的禮物，或是顯示你們之間深厚關係的標記。</label>
+                <label class="option-label"><input type="radio" name="q4" value="慈善家" required>d) 得到「感謝」或「樂於助人」的頭銜，或是能幫助更多人的工具。</label>
+                <label class="option-label"><input type="radio" name="q4" value="殺手" required>e) 能讓你在競爭中獲得優勢的裝備或能力。</label>
+                <label class="option-label"><input type="radio" name="q4" value="自由精神" required>f) 能讓你創造更多個性化內容的素材，例如稀有的染色劑或建造藍圖。</label>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-card" id="q5">
+                <p class="question-text">5. 遊戲提供自由創作模式，你的目標會是？</p>
+                <label class="option-label"><input type="radio" name="q5" value="成就者" required>a) 完成所有預設的挑戰，並解鎖所有可用的創作資源。</label>
+                <label class="option-label"><input type="radio" name="q5" value="探索者" required>b) 嘗試各種非官方的創作方法，看看能否發現一些開發者沒想到的用法。</label>
+                <label class="option-label"><input type="radio" name="q5" value="慈善家" required>c) 創作一些教學或示範性的作品，幫助其他人學習。</label>
+                <label class="option-label"><input type="radio" name="q5" value="社交者" required>d) 邀請朋友一起創作，或者組織一個創作團隊。</label>
+                <label class="option-label"><input type="radio" name="q5" value="殺手" required>e) 創造一個專門用來挑戰其他玩家的作品，並讓他們難以通關。</label>
+                <label class="option-label"><input type="radio" name="q5" value="自由精神" required>f) 盡情地表達自己的想法，創造出一個只屬於自己的獨特世界。</label>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-card" id="q6">
+                <p class="question-text">6. 遊戲中，你更傾向於？</p>
+                <label class="option-label"><input type="radio" name="q6" value="成就者" required>a) 追求單一的、最高效的玩法，以便盡快達到目標。</label>
+                <label class="option-label"><input type="radio" name="q6" value="探索者" required>b) 嘗試各種不同的玩法，即使有些效率不高，只是為了好玩。</label>
+                <label class="option-label"><input type="radio" name="q6" value="慈善家" required>c) 選擇一個輔助或治療角色，並確保團隊中的每個人都能存活下來。</label>
+                <label class="option-label"><input type="radio" name="q6" value="社交者" required>d) 尋求與他人合作，享受協同作戰的樂趣。</label>
+                <label class="option-label"><input type="radio" name="q6" value="殺手" required>e) 尋找能夠與他人對抗的機會，享受競爭帶來的刺激感。</label>
+                <label class="option-label"><input type="radio" name="q6" value="自由精神" required>f) 忽略主線任務，自己設定目標並按自己的節奏進行。</label>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-card" id="q7">
+                <p class="question-text">7. 你對「社交」的看法是？</p>
+                <label class="option-label"><input type="radio" name="q7" value="成就者" required>a) 社交是為了找到可以一起刷副本、獲得獎勵的隊友。</label>
+                <label class="option-label"><input type="radio" name="q7" value="探索者" required>b) 社交是為了交換情報，了解更多遊戲的秘密。</label>
+                <label class="option-label"><input type="radio" name="q7" value="慈善家" required>c) 社交是為了幫助他人，並分享自己的經驗。</label>
+                <label class="option-label"><input type="radio" name="q7" value="社交者" required>d) 社交本身就是目的，享受與人交流和建立關係的過程。</label>
+                <label class="option-label"><input type="radio" name="q7" value="殺手" required>e) 社交是為了尋找可以挑戰的對手。</label>
+                <label class="option-label"><input type="radio" name="q7" value="自由精神" required>f) 社交是為了尋找共同創作的夥伴，或展示自己的創作成果。</label>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-card" id="q8">
+                <p class="question-text">8. 遇到一個難題時，你會怎麼做？</p>
+                <label class="option-label"><input type="radio" name="q8" value="成就者" required>a) 查找攻略，找出最有效率的解決方案，然後照著做。</label>
+                <label class="option-label"><input type="radio" name="q8" value="探索者" required>b) 自己反覆嘗試，探索不同的可能性，直到找到答案。</label>
+                <label class="option-label"><input type="radio" name="q8" value="慈善家" required>c) 如果有人遇到同樣的難題，你會主動分享你的經驗。</label>
+                <label class="option-label"><input type="radio" name="q8" value="社交者" required>d) 向社群尋求幫助，並與大家討論解決方法。</label>
+                <label class="option-label"><input type="radio" name="q8" value="殺手" required>e) 把它視為一個個人的挑戰，並獨自奮鬥直到克服它。</label>
+                <label class="option-label"><input type="radio" name="q8" value="自由精神" required>f) 如果現有方法都行不通，你會自己創造一個新的解決方案。</label>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-card" id="q9">
+                <p class="question-text">9. 遊戲中你最不喜歡哪種情況？</p>
+                <label class="option-label"><input type="radio" name="q9" value="成就者" required>a) 做了很多事卻沒有得到任何分數或進度提示。</label>
+                <label class="option-label"><input type="radio" name="q9" value="探索者" required>b) 遊戲世界過於線性，沒有任何可以探索的隱藏內容。</label>
+                <label class="option-label"><input type="radio" name="q9" value="慈善家" required>c) 看到有人在遊戲中遇到了困難，而你卻無法幫助他們。</label>
+                <label class="option-label"><input type="radio" name="q9" value="社交者" required>d) 遇到沒有人氣、沒有社群互動的遊戲。</label>
+                <label class="option-label"><input type="radio" name="q9" value="殺手" required>e) 感覺不到任何挑戰性，或者沒有可以超越的對手。</label>
+                <label class="option-label"><input type="radio" name="q9" value="自由精神" required>f) 遊戲有太多限制，無法自由表達自己的想法。</label>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-card" id="q10">
+                <p class="question-text">10. 你為什麼會留在一個遊戲或系統中？</p>
+                <label class="option-label"><input type="radio" name="q10" value="成就者" required>a) 因為有持續不斷的目標可以追求，可以不斷提升自己。</label>
+                <label class="option-label"><input type="radio" name="q10" value="探索者" required>b) 因為它總能帶來新的驚喜，有許多東西可以探索和學習。</label>
+                <label class="option-label"><input type="radio" name="q10" value="慈善家" required>c) 因為這個遊戲讓我感覺自己可以幫助他人，並為社群做出貢獻。</label>
+                <label class="option-label"><input type="radio" name="q10" value="社交者" required>d) 因為我有很多朋友在裡面，我們一起度過了美好的時光。</label>
+                <label class="option-label"><input type="radio" name="q10" value="殺手" required>e) 因為這裡有我想要超越的對手，我不喜歡輕易認輸。</label>
+                <label class="option-label"><input type="radio" name="q10" value="自由精神" required>f) 因為我可以在這個遊戲中自由創造，並且看到自己的作品受到他人的欣賞。</label>
+            </div>
+
+            <button type="submit" class="btn-primary" id="submitBtn">計算我的玩家類型</button>
+        </form>
+
+        <div class="result-section" id="resultSection">
+            <div class="flex justify-center mb-4">
+                <img id="playerImage" class="w-full max-w-xs rounded-lg shadow-md" alt="玩家類型圖片">
+            </div>
+            <h2 class="result-title">你的玩家類型是：<span id="playerType"></span></h2>
+            <div class="result-content" id="playerContent"></div>
+            <button onclick="window.location.reload();" class="btn-primary" style="margin-top:1rem;">重新測驗</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // 遊戲玩家類型資料
+            const playerTypesData = {
+                "成就者": {
+                    "特性": "追求掌控感與精通度，熱衷於完成挑戰、累積點數、升級和獲得成就。他們享受向他人展示自身進步的過程。",
+                    "核心驅動力": "主要為發展與成就。次要為所有權與佔有及社交影響力（競爭）。",
+                    "成長建議": "透過清晰的進度條、分層的徽章系統、可比較的排行榜，以及可累積的虛擬點數或貨幣來激勵他們。設計需要挑戰性的任務，並確保他們的努力能獲得可量化的回報。",
+                    "imageUrl": "https://drive.google.com/uc?export=view&id=1YrEUzBpoMyS-zWs4FzbjtecaqID-lBQv"
+                },
+                "探索者": {
+                    "特性": "主要動機是發現遊戲或系統中的新事物、隱藏內容和運作機制。他們享受解謎和尋找彩蛋的過程，對非線性的路徑和豐富的背景設定充滿好奇心。",
+                    "核心驅動力": "主要為不可預測性與好奇心。次要為創造力與回饋的賦能。",
+                    "成長建議": "透過埋藏隱藏的「彩蛋」、設計非線性的任務路徑、提供隨機獎勵事件，以及允許他們探索不同內容來滿足其好奇心。內容本身對他們來說就是獎勵。",
+                    "imageUrl": "https://drive.google.com/uc?export=view&id=1sQCc_XnU0PmpXXeAbjs0pZ3oLsL0ZRaF"
+                },
+                "社交者": {
+                    "特性": "樂趣來自於與其他玩家的互動、建立關係並獲得歸屬感。他們重視合作、聊天和社群聯繫，而非單純的遊戲目標。",
+                    "核心驅動力": "主要為社交影響力與關聯性。次要為史詩意義與使命感及創造力（共同創作）。",
+                    "成長建議": "建立團隊/公會系統、設計需要協作的團隊目標、導入師徒系統，以及提供聊天與社交分享功能。他們需要一個能讓他們感到被包容和連結的環境。",
+                    "imageUrl": "https://drive.google.com/uc?export=view&id=1jRUR-pWn-cNHAKbs_dOy6HbK3NPLyERL"
+                },
+                "殺手": {
+                    "特性": "喜歡與其他玩家競爭，並從戰勝對手中獲得快感。他們享受在競爭中展現技巧、對他人施加影響力，並追求排行榜上的頂尖位置。",
+                    "核心驅動力": "主要為社交影響力（競爭與支配）。次要為損失與避免及發展與成就。",
+                    "成長建議": "設計玩家對戰（PvP）模式和競爭性排行榜，並提供能讓他們在競爭中獲得優勢的裝備或能力。讓他們有機會挑戰並超越他人。",
+                    "imageUrl": "https://drive.google.com/uc?export=view&id=1q5w3fNRC7A9a0OQQzjvt4J_HElfK1TnK"
+                },
+                "慈善家": {
+                    "特性": "純粹出於利他主義而行動，他們享受幫助他人的過程，並從對社群做出貢獻中獲得成就感和使命感。他們是社群的支柱，樂於分享知識和經驗。",
+                    "核心驅動力": "主要為史詩意義與使命感。次要為社交影響力（指導/幫助）。",
+                    "成長建議": "提供平台讓他們幫助新手、貢獻知識（如撰寫攻略），並將他們的貢獻以可視化的方式展示出來（例如，「您的回答已幫助了X位玩家」）。賦予其協助社群的特殊權限。",
+                    "imageUrl": "https://drive.google.com/uc?export=view&id=10Nl5Kn047ufBJ7HizHmlllxOr8ovkZFJ"
+                },
+                "自由精神": {
+                    "特性": "追求創造和自我表達，不喜歡被固定規則束縛。他們享受在沙盒環境中自由探索和創作的過程，並樂於看到自己的作品得到他人的欣賞。",
+                    "核心驅動力": "主要為創造力與回饋的賦能。次要為不可預測性與好奇心。",
+                    "成長建議": "提供高度自由的創作工具和沙盒環境，不設固定目標。允許他們設計、客製化並分享自己的內容。",
+                    "imageUrl": "https://drive.google.com/uc?export=view&id=1UYz30J1vSaMQlZoiD2r7UvJTb2WtEXvy"
+                }
+            };
+
+            const answers = {};
+            const questions = document.querySelectorAll('#quizForm .question-card');
+            let highestScore = 0;
+            let playerType = "";
+
+            questions.forEach(question => {
+                const answer = question.querySelector('input[type="radio"]:checked');
+                if (answer) {
+                    const type = answer.value;
+                    answers[type] = (answers[type] || 0) + 1;
+                }
+            });
+
+            for (const type in answers) {
+                if (answers[type] > highestScore) {
+                    highestScore = answers[type];
+                    playerType = type;
+                }
+            }
+
+            const resultSection = document.getElementById('resultSection');
+            const playerTypeElement = document.getElementById('playerType');
+            const playerContentElement = document.getElementById('playerContent');
+            const playerImageElement = document.getElementById('playerImage');
+
+            if (playerType) {
+                const data = playerTypesData[playerType];
+                playerTypeElement.textContent = playerType;
+                playerImageElement.src = data.imageUrl;
+                playerImageElement.alt = `八角玩家類型 - ${playerType}`;
+                playerContentElement.innerHTML = `
+                    <div class="mt-4">
+                        <h3 class="font-bold">玩家類型分析</h3>
+                        <p><strong>特性：</strong>${data.特性}</p>
+                        <p><strong>核心驅動力：</strong>${data.核心驅動力}</p>
+                        <p><strong>成長建議：</strong>${data.成長建議}</p>
+                    </div>
+                `;
+            } else {
+                playerTypeElement.textContent = "未知的類型";
+                playerContentElement.textContent = "請完成所有問題以獲得結果。";
+            }
+
+            resultSection.style.display = 'block';
+            document.getElementById('quizForm').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+
